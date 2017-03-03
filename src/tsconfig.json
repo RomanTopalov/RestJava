@@ -1,0 +1,33 @@
+{
+  "version": "2.1.4",
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "jsx": "react",
+    "allowJs": false,
+    "isolatedModules": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "declaration": true,
+    "noImplicitAny": false,
+    "noImplicitUseStrict": true,
+    "noEmitHelpers": false,
+    "removeComments": true,
+    "noLib": false,
+    "sourceMap": true,
+    "inlineSources": true,
+    "preserveConstEnums": true,
+    "allowSyntheticDefaultImports": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "rootDir": "./src",
+    "outDir": "./lib"
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "compileOnSave": true,
+  "atom": {
+    "rewriteTsconfig": false
+  }
+}

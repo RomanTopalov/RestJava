@@ -35,4 +35,5 @@ public class HumanServiceImpl implements HumanServise {
     public void delete(int id) {
         humanDao.delete(id);
     }
+
 }
