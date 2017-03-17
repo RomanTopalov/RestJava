@@ -11,17 +11,18 @@ document.getElementById('save').onclick = function () {
         document.getElementById('error').innerHTML = '';
 
         var human = {
-
+            image:document.getElementById('imageHuman').value,
             name: document.getElementById('nameHuman').value
 
         }
 
         document.getElementById('nameHuman').value = '';
+        document.getElementById('imageHuman').value='';
 
         $.ajax({
 
 
-            url: 'saveHuman?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val(),
+            url: 'saveHuman?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val() + + $('input[name=csrf_image]').val(),
             method: 'POST',
             contentType: 'application/json; charset=UTF-8',
             dataType: 'json',
@@ -31,7 +32,7 @@ document.getElementById('save').onclick = function () {
 
                 for (var i = 0; i < res.length; i++) {
                     var index = res[i].id;
-                    all += '<div class="box">'+res[i].name +'<a onclick="deleteHuman(' + index + ')"> delete </div><br>';
+                    all += '<div class="box">'+res[i].name+res[i].image  +'<a onclick="deleteHuman(' + index + ')"> delete </div><br>';
                 }
                 document.querySelector('.all').innerHTML = all;
 
@@ -46,7 +47,8 @@ window.onload = function () {
 
     $.ajax({
 
-        url: 'loadHumans?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val(),
+        url: 'loadHumans?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val() + $('input[name=csrf_image]').val(),
+
         method: 'POST',
         contentType: 'application/json; charset=UTF-8',
         dataType: 'json',
@@ -56,7 +58,7 @@ window.onload = function () {
 
             for (var i = 0; i < res.length; i++) {
                 var index = res[i].id;
-                all += '<div class="box">'+res[i].name +'<a onclick="deleteHuman(' + index + ')"> delete </div><br>';
+                all += '<div class="box">'+res[i].name +res[i].image  +'<a onclick="deleteHuman(' + index + ')"> delete </div><br>';
             }
             document.querySelector('.all').innerHTML = all;
         }
@@ -67,7 +69,7 @@ function deleteHuman(index) {
 
     $.ajax({
 
-        url: 'deleteHuman?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val(),
+        url: 'deleteHuman?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val() + $('input[name=csrf_image]').val(),
         method: 'POST',
         contentType: 'application/json; charset=UTF-8',
         dataType: 'json',
@@ -78,7 +80,7 @@ function deleteHuman(index) {
 
             for (var i = 0; i < res.length; i++) {
                 var index = res[i].id;
-                all += '<div class="box">'+res[i].name +'<a onclick="deleteHuman(' + index + ')"> delete </div><br>';
+                all += '<div class="box">'+res[i].name +res[i].image +'<a onclick="deleteHuman(' + index + ')"> delete </div><br>';
             }
             document.querySelector('.all').innerHTML = all;
         }

@@ -20,11 +20,15 @@
        value="${_csrf.parameterName}" />
 <input type="hidden" name="csrf_value"
        value="${_csrf.token}" />
+<input type="hidden" name="csrf_image"
+       value="${_csrf.parameterName}" />
+
 
 
 <div class="wrapper" style="text-align: center">
     <header>
         <div id="error"></div>
+        <input  id="imageHuman" type="file" name="image" ><br><br>
         <input type="text" id="nameHuman" placeholder="name of human">
         <button id="save">save</button>
     </header>

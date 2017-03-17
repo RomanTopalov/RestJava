@@ -1,16 +1,12 @@
 package ua.controller;
 
 
-import jdk.internal.dynalink.linker.LinkerServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import ua.entity.Human;
 import ua.servise.HumanServise;
 
-import java.security.Principal;
-import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -19,16 +15,17 @@ import java.util.List;
 @RestController
 public class HumanController  {
 
-    @Autowired
-    private HumanServise humanServise;
 
-    @RequestMapping(value = "/saveHuman", method = RequestMethod.POST)
+  /*  @RequestMapping(value = "/saveHuman", method = RequestMethod.POST)
     public List<Human> saveHuman(@RequestBody  Human human){
 
         humanServise.save(human);
 
         return humanServise.findAll();
-    }
+    }*/
+  @Autowired
+  private HumanServise humanServise;
+
     @RequestMapping(value = "/deleteHuman", method = RequestMethod.POST)
     public List<Human> loadHumans(@RequestBody String index) {
 
@@ -38,6 +35,14 @@ public class HumanController  {
 
     }
 
+    @RequestMapping(value = "/saveHuman", method = RequestMethod.POST)
+    public String  saveHuman(@ModelAttribute Human human, @RequestParam MultipartFile image){
+
+
+        humanServise.save(human,image);
+
+        return "redirect:/human";
+    }
 }
 
 /*@RestController

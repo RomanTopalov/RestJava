@@ -1,10 +1,7 @@
 package ua.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by -rom- on 13.02.2017.
@@ -19,6 +16,22 @@ public class Human {
     private String name ;
     private String surname;
     private int number;
+    private String pathImage;
+
+   /* @OneToOne
+    @JoinTable(name = "roma_human", joinColumns = @JoinColumn(name = "roma_id"), inverseJoinColumns = @JoinColumn(name = "human_id"))
+  */
+   @OneToOne(optional=false)
+   @JoinTable(name = "roma_human", joinColumns = @JoinColumn(name = "roma_id"), inverseJoinColumns = @JoinColumn(name = "human_id"))
+   private Roma roma;
+
+    public Roma getRoma() {
+        return roma;
+    }
+
+    public void setRoma(Roma roma) {
+        this.roma = roma;
+    }
 
     public Human() {
 
@@ -59,6 +72,14 @@ public class Human {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    public String getPathImage() {
+        return pathImage;
+    }
+
+    public void setPathImage(String pathImage) {
+        this.pathImage = pathImage;
     }
 
     @Override
