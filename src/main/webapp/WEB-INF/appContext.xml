@@ -26,7 +26,6 @@
     </bean>
 
     <context:component-scan base-package="ua.*"/>
-
     <jpa:repositories base-package="ua.dao"/>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>

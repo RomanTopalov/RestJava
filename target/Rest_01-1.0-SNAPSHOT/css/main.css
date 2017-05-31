@@ -1,0 +1,201 @@
+*{
+    margin: 0px;
+    padding: 0px;
+
+}
+
+/*
+=========header========*/
+#header{
+    width: 100%;
+    height: 60vh;
+
+
+}
+.navbar.navbar-default.navbar-static-top{
+    margin-bottom: -93px!important;
+}
+.navbar-nav {
+     float: none!important;
+
+    display: flex;
+    justify-content: center;
+    margin-top: 22px!important;
+}
+.img-menu{
+    margin-left: 30px;
+}
+
+.navbar-default {
+    background-color: #363636!important;
+    opacity: 0.86;
+}
+.navbar {
+
+    min-height: 93px!important;
+    margin-bottom: 20px;
+}
+.navbar-brand {
+    padding: 8px 15px!important;
+}
+img.small-image-logo {
+    position: relative;
+    left: 20%;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #fff!important;
+}
+img.img-header {
+    margin-top: 7px;
+    margin-left: 65px;
+
+}
+input.btn.btn-default {
+    color: #fff;
+    background-color: #363636;
+    margin-left: 45px;
+    width: 198px;
+    border-radius: 28px;
+    height: 40px;
+    margin-top: 5px;
+}
+li.li-header {
+    margin-left: 20px;
+}
+
+.h2, h2 {
+    font-size: 30px;
+}
+h2 {
+    position: absolute!important;
+    top: 106px!important;
+}
+
+
+
+/*
+========///*/
+
+.title-and-text {
+    display: flex;
+    justify-content: center;
+    color: black;
+    margin-top: 202px;
+    align-items: center;
+    flex-direction: column;
+}
+.title-header{
+    font-size: 57px;
+    font-weight: 600;
+}
+.text-header{
+    font-size: 48px;
+
+}
+img.small-image-logo {
+    width: 50px;
+    border-radius: 10px;
+}
+button {
+    padding: 7px!important;
+    border: 1px solid!important;
+    color: white!important;
+    background: #68646c!important;
+    border-radius: 12px!important;
+    margin-top: -22px!important;
+}
+
+/*
+=========end header========*/
+
+
+/*
+
+====================login==================*/
+
+
+.login-form {
+    display: flex;
+    justify-content: center;
+    background: #5a5656;
+    padding: 55px;
+    max-width: 845px;
+    margin: auto;
+    margin-top: 200px;
+    border-radius: 16px;
+    flex-direction: column;
+    align-items: center;
+
+}
+button.btn.btn-default {
+    margin-bottom: -18px!important;
+}
+.title-login{
+    color: white;
+    margin-bottom: 60px;
+    font-size: 40px;
+}
+
+/*
+
+================task section ============*/
+#blog-section{
+    background: rgba(205, 207, 212, 0.87) 0 repeat-y fixed;
+    width: 100%;
+    height: 100vh;
+
+
+}
+
+h1.task-title {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.task-message {
+    font-size: 24px;
+    border: 4px solid white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+p.username-text {
+    display: flex;
+    justify-content: flex-end;
+    width:90%;
+}
+p.text-message {
+    margin-top: 20px;
+}
+
+/*
+
+========================admin=================*/
+
+h1.task-title-admin {
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
+    margin-bottom: 50px;
+}
+
+.settings-for-task {
+    display: flex;
+    font-size: 18px;
+    color: #544242;
+    justify-content: flex-end;
+    margin-right: 15px;
+}
+.create-task {
+    font-size: 23px;
+    font-weight: 500;
+    display: flex;
+}
+form{
+    margin-left: 20px;
+}
