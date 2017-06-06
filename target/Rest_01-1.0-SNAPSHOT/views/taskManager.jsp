@@ -7,9 +7,9 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://www.springframework.org/security/tags"	prefix="sec"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>TaskManager</title>
@@ -34,10 +34,13 @@
 
 
                 <li class="li-header"><a href="home" class="smoothScroll">Home</a></li>
-                <li class="li-header"><a href="taskManager" class="smoothScroll">TaskManager</a></li>
-
-                <li class="li-header"><a href="loginpage" class="smoothScroll">Log in</a></li>
-                <li class="li-header"><a href="registration" class="smoothScroll">Sign in</a></li>
+                <sec:authorize access="hasRole('ROLE_USER')">
+                    <li class="li-header"><a href="taskManager" class="smoothScroll">TaskManager</a></li>
+                </sec:authorize>
+                <sec:authorize access="!isAuthenticated()">
+                    <li class="li-header"><a href="loginpage" class="smoothScroll">Log in</a></li>
+                    <li class="li-header"><a href="registration" class="smoothScroll">Sign in</a></li>
+                </sec:authorize>
 
                 <li class="li-header"><a class="smoothScroll">
                     <sec:authorize access="isAuthenticated()">
@@ -65,10 +68,10 @@
             </div>
             <div class="create-task">
                 <p class="create-task-text">Create task</p>
-                <form:form modelAttribute="taskManager" action="saveTask" method="post" >
-                    <form:input path="title" value="text" type="text"/>
-                    <form:input path="text" value="text" type="text"/>
-                    <form:input path="autor" value="text" type="text"/>
+                <form:form modelAttribute="taskManager" action="saveTask" method="post">
+                    <form:input path="title" value="Title" type="text"/>
+                    <form:input path="text" value="Text" type="text"/>
+                    <form:input path="autor" value="Autor" type="hiddem"/>
 
                     <input type="submit" value="Create">
                 </form:form>
@@ -77,17 +80,17 @@
 
             <div class="all-settings">
                 <c:forEach var="taskManager" items="${taskManagers}">
-                <div class="task-message">
-                    <p>${taskManager.title}</p>
-                    <p class="text-message">${taskManager.text}</p>
-                    <p class="username-text">${taskManager.autor}</p>
-                </div>
+                    <div class="task-message">
+                        <p>${taskManager.title}</p>
+                        <p class="text-message">${taskManager.text}</p>
+                        <p class="username-text">${taskManager.autor}</p>
+                    </div>
 
 
-                <div class="settings-for-task">
-                    <p ><a href="updateTaskManager/${taskManager.id}">update</a></p> /
-                    <p><a href="deleteTask/${taskManager.id}"> delete</a></p>
-                </div>
+                    <div class="settings-for-task">
+                        <p><a href="updateTaskManager/${taskManager.id}">update</a></p> /
+                        <p><a href="deleteTask/${taskManager.id}"> delete</a></p>
+                    </div>
                 </c:forEach>
             </div>
 

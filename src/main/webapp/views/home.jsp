@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>HOME</title>
@@ -25,23 +25,25 @@
             <ul class="nav navbar-nav ">
 
                 <li class="li-header"><a href="home" class="smoothScroll">Home</a></li>
-<sec:authorize access="hasRole('ROLE_USER')">
-                <li class="li-header"><a href="taskManager" class="smoothScroll">TaskManager</a></li>
+                <sec:authorize access="hasRole('ROLE_USER')">
+                    <li class="li-header"><a href="taskManager" class="smoothScroll">TaskManager</a></li>
 
-</sec:authorize>
-                <li class="li-header"><a href="loginpage" class="smoothScroll">Log in</a></li>
-                <li class="li-header"><a href="registration" class="smoothScroll">Sign in</a></li>
+                </sec:authorize>
 
+                <sec:authorize access="!isAuthenticated()">
+                    <li class="li-header"><a href="loginpage" class="smoothScroll">Log in</a></li>
+                    <li class="li-header"><a href="registration" class="smoothScroll">Sign in</a></li>
+                </sec:authorize>
 
                 <li class="li-header"><a class="smoothScroll">
-                <sec:authorize access="isAuthenticated()">
-                    <form:form action="logout" method="post">
-                        <a href="#">
-                            <button>logout</button>
-                        </a>
-                    </form:form>
+                    <sec:authorize access="isAuthenticated()">
+                        <form:form action="logout" method="post">
+                            <a href="#">
+                                <button>logout</button>
+                            </a>
+                        </form:form>
 
-                </sec:authorize></a></li>
+                    </sec:authorize></a></li>
 
                 <input class="btn btn-default" type="submit" value="Submit">
 
@@ -63,9 +65,6 @@
 </sec:authorize>
 
 
-
-
-
 <section id="header">
     <div class="container">
         <div class="row">
@@ -82,29 +81,28 @@
 </section>
 
 <section id="blog-section">
-<div class="container">
-<div class="row">
-<div class="blog-title">
-    <h1 class="task-title">Task manager</h1>
-</div>
-    <c:forEach var="taskManager" items="${taskManagers}">
-       <div class="task-message">
-                 <p>${taskManager.title}</p>
-                 <p class="text-message">${taskManager.text}</p>
-                 <p class="username-text">${taskManager.autor}</p>
+    <div class="container">
+        <div class="row">
+            <div class="blog-title">
+                <h1 class="task-title">Task manager</h1>
+            </div>
+            <c:forEach var="taskManager" items="${taskManagers}">
+                <div class="task-message">
+                    <p>${taskManager.title}</p>
+                    <p class="text-message">${taskManager.text}</p>
+                    <p class="username-text">${taskManager.autor}</p>
+                </div>
+            </c:forEach>
+
+
         </div>
-    </c:forEach>
-
-
     </div>
-    </div>
-    </section>
+</section>
 
 
-    <script src="../js/jquery-3.1.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+<script src="../js/jquery-3.1.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 
 
-
-    </body>
-    </html>
+</body>
+</html>

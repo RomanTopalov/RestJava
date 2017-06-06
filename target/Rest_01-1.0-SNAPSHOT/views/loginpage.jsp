@@ -23,9 +23,13 @@
 			<ul class="nav navbar-nav ">
 
 				<li class="li-header"><a href="home" class="smoothScroll">Home</a></li>
+				<sec:authorize access="hasRole('ROLE_USER')">
 				<li class="li-header"><a href="taskManager" class="smoothScroll">TaskManager</a></li>
+				</sec:authorize>
+				<sec:authorize access="!isAuthenticated()">
 				<li class="li-header"><a href="loginpage" class="smoothScroll">Log in</a></li>
 				<li class="li-header"><a href="registration" class="smoothScroll">Sign in</a></li>
+				</sec:authorize>
 
 				<li class="li-header"><a class="smoothScroll">
 					<sec:authorize access="isAuthenticated()">
@@ -51,12 +55,12 @@
 	<form:form class="form-inline" action="loginprocesing" method="post">
 		<div class="form-group">
 			<label class="sr-only">Name</label>
-			<input name="username" type="text" placeholder="login"  class="form-control"/>
+			<input name="username" type="text" placeholder="login"  class="form-control" required="required"/>
 		</div>
 
 		<div class="form-group">
 			<label class="sr-only" for="exampleInputPassword3">Password</label>
-			<input name="password" type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+			<input name="password" type="password" class="form-control" id="exampleInputPassword3" placeholder="Password" required="required">
 		</div>
 		<button type="submit" class="btn btn-default">Sign in</button>
 	</form:form>
@@ -68,3 +72,4 @@
 <script src="js/bootstrap.min.js"></script>
 
 </body>
+</html>

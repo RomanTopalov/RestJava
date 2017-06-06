@@ -1,6 +1,8 @@
 package ua.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +11,8 @@ import ua.entity.TaskManager;
 import ua.entity.User;
 import ua.servise.TaskManagerService;
 import ua.servise.UserService;
+
+import java.security.Principal;
 
 /**
  * Created by -rom- on 27.05.2017.
@@ -32,10 +36,15 @@ public class TaskManagerController {
 
 
     @RequestMapping(value ="/saveTask",method = RequestMethod.POST)
-    public String saveTask(@ModelAttribute TaskManager taskManager){
+    public String saveTask(@ModelAttribute TaskManager taskManager ,@RequestParam String autor ){
 
-        /*User user = userService.findOne(new User().getId());
-        taskManager.setAutor(user.getName());*/
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        User user = (User) authentication.getPrincipal();
+        String userName= user.getName();
+        autor=userName;
+        taskManager.setAutor(autor);
+
         taskManagerService.save(taskManager);
         return "redirect:/taskManager";
     }
@@ -53,11 +62,12 @@ public class TaskManagerController {
 
     @RequestMapping(value = "/updateTaskManager",method = RequestMethod.POST)
     public String updateTaskSome(@RequestParam String id , @RequestParam String title ,
-                             @RequestParam String text,@RequestParam String autor){
+                             @RequestParam String text,@RequestParam String autor ){
         TaskManager taskManager = taskManagerService.findOne(Integer.parseInt(id));
         taskManager.setTitle(title);
         taskManager.setText(text);
         taskManager.setAutor(autor);
+
         taskManagerService.save(taskManager);
         return "redirect:/taskManager";
     }

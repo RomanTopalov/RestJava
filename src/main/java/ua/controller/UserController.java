@@ -11,6 +11,7 @@ import ua.dto.DtoUtilMapper;
 import ua.entity.User;
 import ua.servise.MailSenderService;
 import ua.servise.UserService;
+import ua.validator.UserValidationMessages;
 
 import java.util.UUID;
 
@@ -48,9 +49,23 @@ public class UserController {
 
         user.setUuid(uuid);
 
-        userService.save(user);
+        try {
+            userService.save(user);
+        } catch (Exception e) {
+            if (e.getMessage().equals(UserValidationMessages.EMPTY_USERNAME_FIELD)
+                    || e.getMessage().equals(UserValidationMessages.NAME_ALREADY_EXIST)) {
+                model.addAttribute("usernameException", e.getMessage());
+            } else if (e.getMessage().equals(UserValidationMessages.EMPTY_EMAIl_FIELD)
+                    || e.getMessage().equals(UserValidationMessages.EMAIL_ALREADY_EXIST)) {
+                model.addAttribute("emailException", e.getMessage());
+            } else if (e.getMessage().equals(UserValidationMessages.EMPTY_PASSWORD_FIELD)) {
+                model.addAttribute("passwordException", e.getMessage());
+            }
+            return "registration";
+        }
+
         String theme = "thank's for registration";
-        String mailBody = "gl & hf       http://localhost:8080/confirm/" + uuid;
+        String mailBody = "Click to confirm http://localhost:8080/confirm/" + uuid;
 
         mailSenderService.sendMail(theme, mailBody, user.getEmail());
 

@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/font-awesome.min.css">
+
 <html>
 <head>
 	<title>HOME</title>
@@ -29,12 +30,13 @@
             <ul class="nav navbar-nav ">
 
                 <li class="li-header"><a href="home" class="smoothScroll">Home</a></li>
-
+                <sec:authorize access="hasRole('ROLE_USER')">
                 <li class="li-header"><a href="taskManager" class="smoothScroll">TaskManager</a></li>
-
-
+                </sec:authorize>
+                <sec:authorize access="!isAuthenticated()">
                 <li class="li-header"><a href="loginpage" class="smoothScroll">Log in</a></li>
                 <li class="li-header"><a href="registration" class="smoothScroll">Sign in</a></li>
+                </sec:authorize>
 
                 <li class="li-header"><a class="smoothScroll">
                     <sec:authorize access="isAuthenticated()">
@@ -60,21 +62,21 @@
     <form:form class="form-inline" modelAttribute="user" action="registration" method="post">
 
         <div class="form-group">
-            <label class="sr-only" for="name1">Name</label>
-            <label for="Name">${usernameException}</label>
-            <form:input path="name" type="text" placeholder=" login" class="form-control" id="name1" />
+
+            <label for="name">${usernameException}</label>
+            <form:input path="name" type="text" placeholder="name" class="form-control" required="required" />
 
         </div>
         <div class="form-group">
-            <label class="sr-only" for="exampleInputEmail3">Email address</label>
+
             <label for="email">${emailException}</label>
-            <form:input path="email" type="email" class="form-control" id="exampleInputEmail3" placeholder="Email"/>
+            <form:input path="email" type="email" class="form-control"  placeholder="email" required="required"/>
 
         </div>
         <div class="form-group">
-            <label class="sr-only" for="exampleInputPassword3">Password</label>
+
             <label for="password">${passwordException}</label>
-            <form:input path="password" type="password" class="form-control" id="exampleInputPassword3" placeholder="Password"/>
+            <form:input path="password" type="password" class="form-control" placeholder="password" required="required"/>
         </div>
         <button type="submit" class="btn btn-default">Sign in</button>
     </form:form>
